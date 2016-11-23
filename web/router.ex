@@ -14,9 +14,11 @@ defmodule PhoenixTrello.Router do
   end
 
   scope "/", PhoenixTrello do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :api # Use the default browser stack
 
-    get "*path", PageController, :index
+    scope "/v1" do
+      post "/registrations", RegistrationController, :create
+    end
   end
 
   # Other scopes may use custom stacks.
